@@ -36,14 +36,17 @@ const NewScheduleTxn = () => {
   };
 
   const handleSubmit = () => {
+    const dateiso = new Date(date);
+    const iso = dateiso.toISOString();
     axios.post("http://localhost:5000/transaction/txn_insert", {
       AccountID: accountid,
       ReceivingAccountID: receivingaccountid,
-      Date: date,
+      Date: iso,
       TransactionAmount: transactionamount,
       Comment: comment,
       Transacted: "F",
     });
+    console.log(iso);
   };
 
   return (
