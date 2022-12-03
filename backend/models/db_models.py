@@ -14,7 +14,14 @@ class BankAccount(db.Model):
     AccountType = Column(String(255))
     AccountBalance = Column(Numeric(10, 2))
 
+    def jsonBankAccounts(self):
+        return {
+            "AccountID": self.AccountID,
+            "AccountType": self.AccountType,
+            "AccountBalance": self.AccountBalance
+        }
 
+        
 
 class ScheduledTransaction(db.Model):
     __tablename__ = 'ScheduledTransactions'
