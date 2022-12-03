@@ -10,7 +10,7 @@ from utils.dbConfig import db
 # from routes.wallet_bp import wallet_bp
 # from routes.exchangeRate_bp import exchangeRate_bp
 # from routes.transaction_bp import transaction_bp
-# from routes.auth_bp import auth_bp
+from routes.auth_bp import auth_bp
 
 from flask_jwt_extended import JWTManager
 
@@ -40,7 +40,7 @@ def healthCheck():
 # application.register_blueprint(wallet_bp, url_prefix='/wallet')
 # application.register_blueprint(exchangeRate_bp, url_prefix='/exchange_rate')
 # application.register_blueprint(transaction_bp, url_prefix='/transaction')
-# application.register_blueprint(auth_bp, url_prefix='/auth')
+application.register_blueprint(auth_bp, url_prefix='/auth')
 
 
 if __name__ == '__main__':
