@@ -22,7 +22,7 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -109,4 +109,12 @@ body {
 footer {
   margin-top: 30px;
   text-align: center;
+}
+
+.headertxn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }

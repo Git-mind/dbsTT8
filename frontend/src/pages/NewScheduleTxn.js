@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import "../Custom.css";
+import axios from "axios";
 
 const NewScheduleTxn = () => {
   const [accountid, setAccountId] = useState("");
@@ -34,9 +35,23 @@ const NewScheduleTxn = () => {
     setComment(comment);
   };
 
+  const handleSubmit = () => {
+    axios.post("http://localhost:5000/transaction/txn_insert", {
+      AccountID: accountid,
+      ReceivingAccountID: receivingaccountid,
+      Date: date,
+      TransactionAmount: transactionamount,
+      Comment: comment,
+      Transacted: "F",
+    });
+  };
+
   return (
     <>
-      <form className="container">
+      <header className="headertxn">
+        <h1>New Scheduled Transactions</h1>
+      </header>
+      <form className="container" onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
             type="text"
@@ -93,7 +108,7 @@ const NewScheduleTxn = () => {
         </div>
 
         <div className="mb-3 d-grid">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={handleSubmit}>
             <span>Submit</span>
           </button>
         </div>
