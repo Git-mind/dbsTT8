@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import AuthService from "../services/auth.service";
 import DbsLogo from "../assets/DBS-Bank-logo.png";
 // import { useAuth } from "../contexts/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   //let navigate = useNavigate();
@@ -11,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -32,7 +34,7 @@ const Login = () => {
     console.log("Login clicked");
     console.log(username);
     console.log(password);
-
+    navigate("/dashboard");
     /*
     auth.login(username, password).then(
       () => {
