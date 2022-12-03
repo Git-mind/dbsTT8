@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import AuthService from "../services/auth.service";
 // import DbsLogo from "../assets/DBS-Bank-logo.png";
-// import { useAuth } from "../contexts/authContext";\
+// import { useAuth } from "../contexts/authContext";
 
 const Dashboard = () => {
   var test = [
@@ -29,6 +29,9 @@ const Dashboard = () => {
   return (
     <>
       <div>
+        <button type="button" class="btn btn-primary">
+          View profile
+        </button>
         <div class="row">
           <div class="col-sm-6">
             <div class="card border-0">
