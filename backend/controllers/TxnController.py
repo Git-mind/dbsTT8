@@ -23,9 +23,16 @@ def txn_detail():
     #         }
     #     ), 500
 
+    TransactionID = request.json.get("TransactionID", None)
+    AccountID = request.json.get("AccountID", None)
+    txn_detail = ScheduledTransaction.query.filter_by(TransactionID=TransactionID, AccountID=AccountID).first()
+    print(TransactionID)
+    print(AccountID)
+    print(txn_detail.json())
+
     return jsonify(
         {
             "code": 201,
-            "data": "test"
+            "data": txn_detail.json()
         }
     ), 201
