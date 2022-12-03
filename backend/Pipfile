@@ -12,6 +12,7 @@ flask-cors = "*"
 flask-jwt-extended = "*"
 flask-sqlacodegen = "*"
 pipfile = "*"
+apscheduler = "*"
 
 [dev-packages]
 
