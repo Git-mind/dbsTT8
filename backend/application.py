@@ -16,7 +16,11 @@ from routes.txn_bp import txn_bp
 from routes.user_bp import user_bp
 
 from flask_jwt_extended import JWTManager
-from models.db_models import ScheduledTransaction
+from models.db_models import (
+    ScheduledTransaction,
+    BankAccount
+)
+from datetime import datetime
 
 # load_dotenv()
 
@@ -35,6 +39,49 @@ def healthCheck():
     update_balance()
     return "Healthy",200
 
+def update_balance():
+    notUpdated = ScheduledTransaction.query.filter_by(Transacted="F").all()
+    '''
+    {
+        'TransactionID': 1,
+        'AccountID': 621156213,
+        'ReceivingAccountID': 339657462,
+        'Date': '2022-11-08T04:00:00.000Z',
+        'TransactionAmount': Decimal('500.00'),
+        'Comment': 'Monthly Pocket Money',
+        'Transaction': 'F'
+    }
+    
+    2022-11-08 04:00:00+00:00
+    2022-11-08 04:00:00+00:00
+    2022-11-25 04:00:00+00:00
+    2022-11-17 06:21:00+00:00
+    2022-12-08 04:00:00+00:00
+    2022-12-08 04:00:00+00:00
+    2022-12-08 04:00:00+00:00
+    '''
+    for txn_obj in notUpdated:
+        txn = txn_obj.json()
+        DT = txn['Date']
+        DT = datetime.fromisoformat(DT[:-1] + '+00:00')
+        DT = DT.replace(tzinfo=None)
+        if DT > datetime.now():
+            continue
+        
+        sender = txn['AccountID']
+        receiver = txn['ReceivingAccountID']
+        amount = txn['TransactionAmount']
+        print(amount)
+        
+        senderAcc = BankAccount.query.filter_by(AccountID = sender).first()
+        receiverAcc = BankAccount.query.filter_by(AccountID = receiver).first()
+        if not senderAcc or not receiverAcc:
+            continue
+        senderAcc.AccountBalance -= amount
+        receiverAcc.AccountBalance += amount
+        txn_obj.Transacted = "T"
+        db.session.commit()
+    print("FINISH UPDATED")
 
 # application.register_blueprint(user_bp, url_prefix='/user')
 # application.register_blueprint(wallet_bp, url_prefix='/wallet')
