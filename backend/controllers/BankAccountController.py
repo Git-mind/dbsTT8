@@ -28,7 +28,7 @@ def getAccInfo():
             return jsonify(
                 {
                 "code": 200,
-                "data": [bankAcc.jsonBankAccounts() for bankAcc in bankAccs]
+                "data": [bankAcc.json() for bankAcc in bankAccs]
                 }
             ), 200
 
