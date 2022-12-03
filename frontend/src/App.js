@@ -1,20 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Profile from "./Profile";
-import ProEdit from "./ProfileEdit";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Test profile page</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Profile />}></Route>
-
-          <Route path="/profile/edit/:empid" element={<ProEdit />}></Route>
-        </Routes>
-      </BrowserRouter>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 }
