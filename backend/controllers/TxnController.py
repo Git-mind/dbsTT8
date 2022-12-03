@@ -3,21 +3,20 @@ from flask import Flask, request, jsonify
 from models.db_models import User
 from utils.dbConfig import db
 from models.db_models import ScheduledTransaction
-
 # Insert transactions created from frontend into Transaction table [4]
 # http://127.0.0.1:5000/transaction/create_transaction?username=user101
 
 def txn_detail():
 
-    TransactionID = request.json.get("TransactionID", None)
     AccountID = request.json.get("AccountID", None)
-    txn_detail = ScheduledTransaction.query.filter_by(TransactionID=TransactionID, AccountID=AccountID).first()
-
-    if txn_detail:
+    txn_detail = ScheduledTransaction.query.filter_by(AccountID=AccountID).all()
+    txn_detail.extend(ScheduledTransaction.query.filter_by(ReceivingAccountID=AccountID).all())
+    print(txn_detail)
+    if len(txn_detail):
         return jsonify(
             {
                 "code": 200,
-                "data": txn_detail.json()
+                "data": [detail.json() for detail in txn_detail]
             }
         )
     return jsonify(
