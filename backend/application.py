@@ -16,6 +16,7 @@ from routes.txn_bp import txn_bp
 from routes.user_bp import user_bp
 
 from flask_jwt_extended import JWTManager
+from models.db_models import ScheduledTransaction
 
 # load_dotenv()
 
@@ -28,14 +29,10 @@ CORS(application)
 
 db.init_app(application)
 
-
-@app.route("/")
-def home():
-    return "Hello, Flask!"
-
 # Elastic beanstalk health check
 @application.route('/', methods=["GET"])
-def healthCheck(): 
+def healthCheck():
+    update_balance()
     return "Healthy",200
 
 
