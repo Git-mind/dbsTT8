@@ -108,7 +108,7 @@ const NewScheduleTxn = () => {
         </div>
 
         <div className="mb-3 d-grid">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn btn-primary" type="submit">
             <span>Submit</span>
           </button>
         </div>
