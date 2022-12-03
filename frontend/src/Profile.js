@@ -13,7 +13,7 @@ const Profile = () => {
   };
   const Removefunction = (id) => {
     if (window.confirm("Do you want to remove?")) {
-      fetch("http://localhost:8000/employee/" + id, {
+      fetch("localhost:5000/user/getUserDetails" + id, {
         method: "DELETE",
       })
         .then((res) => {
@@ -25,7 +25,7 @@ const Profile = () => {
         });
     }
   };
-
+  //localhost:5000/user/getUserDetails get user details
   useEffect(() => {
     fetch("https://mocki.io/v1/975c7fac-bb98-41ae-b9a0-374d3b72871f")
       .then((res) => {
