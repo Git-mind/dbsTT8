@@ -26,9 +26,10 @@ class ScheduledTransaction(db.Model):
     Date = Column(String(255))
     TransactionAmount = Column(Numeric(10, 2))
     Comment = Column(String(255))
+    Transacted = Column(String(12))
 
     def json(self):
-        return {"TransactionID": self.TransactionID, "AccountID": self.AccountID, "ReceivingAccountID": self.ReceivingAccountID, "Date": self.Date, "TransactionAmount": self.TransactionAmount, "Comment": self.Comment}
+        return {"TransactionID": self.TransactionID, "AccountID": self.AccountID, "ReceivingAccountID": self.ReceivingAccountID, "Date": self.Date, "TransactionAmount": self.TransactionAmount, "Comment": self.Comment, "Transaction": self.Transacted}
 
 class User(db.Model):
     __tablename__ = 'User'

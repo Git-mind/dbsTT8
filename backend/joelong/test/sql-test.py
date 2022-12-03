@@ -9,3 +9,5 @@ engine = create_engine( f'mysql+pymysql://{user}:{password}@{host}:{port}/Bank',
 with engine.connect() as con:
     res = con.execute('SHOW TABLES')
     print(res.fetchall())
+    res = con.execute('SELECT * FROM ScheduledTransactions')
+    print(res.fetchall())
