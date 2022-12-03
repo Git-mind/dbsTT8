@@ -45,3 +45,8 @@ class User(db.Model):
 
     def json(self):
         return {"UserID": self.UserID, "Username": self.Username, "Password": self.Password, "Firstname": self.Firstname, "Lastname": self.Lastname, "Email": self.Email, "Address": self.Address, "OptIntoPhyStatements": self.OptIntoPhyStatements, }
+
+    def jsonWithoutCredentials(self):
+        return {
+            "Firstname": self.Firstname, "Lastname": self.Lastname, "Email": self.Email, "Address": self.Address, "OptIntoPhyStatements": self.OptIntoPhyStatements
+        }
