@@ -12,6 +12,7 @@ from utils.dbConfig import db
 #     AccountBalance = Column(Numeric(10, 2))
 
 def getAccInfo():
+    print(request.get_data())
     if request.is_json:
         data = request.get_json()
         user_id = data["user_id"]
