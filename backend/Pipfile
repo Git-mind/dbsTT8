@@ -11,6 +11,7 @@ python-dotenv = "*"
 flask-cors = "*"
 flask-jwt-extended = "*"
 flask-sqlacodegen = "*"
+pipfile = "*"
 
 [dev-packages]
 
