@@ -11,8 +11,13 @@ python-dotenv = "*"
 flask-cors = "*"
 flask-jwt-extended = "*"
 flask-sqlacodegen = "*"
+pipfile = "*"
+apscheduler = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+start="flask --debug --app application.py run -p 5000 -h 0.0.0.0"
