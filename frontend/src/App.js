@@ -1,10 +1,8 @@
 import Header from './components/Header'
 import Transactions from './components/Transactions'
-import AddTransaction from './components/AddTransaction'
 import { useState } from 'react'
 
 const App = () => {
-  const [showAddTask, setShowAddTask] = useState(false)
   const [transactions, setTransactions] = useState([
     {
         id: 1,
@@ -33,23 +31,6 @@ const App = () => {
     setTransactions(transactions.filter((transaction) => transaction.id !== id))
   }
 
-  const addTransaction = async (transaction) => {
-    const res = await fetch('http://localhost:3000/transaction', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(transaction),
-    })
-
-    const data = await res.json()
-
-    setTransactions([...transactions, data])
-
-    // const id = Math.floor(Math.random() * 10000) + 1
-    // const newTask = { id, ...task }
-    // setTasks([...tasks, newTask])
-  }
   // const toggleReminder = (id) => {
   //   setTransactions(transactions.map((transaction) => transaction.id === id?{...transaction, reminder:!transaction.reminder}:transaction))
   // }
