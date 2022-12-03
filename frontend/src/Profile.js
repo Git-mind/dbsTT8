@@ -25,9 +25,12 @@ const Profile = () => {
         });
     }
   };
+
+
+
   //localhost:5000/user/getUserDetails get user details
   useEffect(() => {
-    fetch("https://mocki.io/v1/975c7fac-bb98-41ae-b9a0-374d3b72871f")
+    fetch("http://localhost:5000/user/getUserDetails/1 ")
       .then((res) => {
         return res.json();
       })
@@ -38,6 +41,8 @@ const Profile = () => {
         console.log(err.message);
       });
   }, []);
+  console.log(profdata);
+
   return (
     <div className="container">
       <div className="card">
@@ -60,13 +65,13 @@ const Profile = () => {
             <tbody>
               {profdata &&
                 profdata.map((item) => (
-                  <tr key={item.UserID}>
-                    <td>{item.Username}</td>
-                    <td>{item.Firstname}</td>
-                    <td>{item.Lastname}</td>
-                    <td>{item.Email}</td>
-                    <td>{item.Address}</td>
-                    <td>{item.OptIntoPhyStatements}</td>
+                  <tr key={item.data.UserID}>
+                    <td>{item.data.Username}</td>
+                    <td>{item.data.Firstname}</td>
+                    <td>{item.data.Lastname}</td>
+                    <td>{item.data.Email}</td>
+                    <td>{item.data.Address}</td>
+                    <td>{item.data.OptIntoPhyStatements}</td>
                     <td>
                       <a
                         onClick={() => {
