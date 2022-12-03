@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import "../Custom.css";
 
 const NewScheduleTxn = () => {
   const [accountid, setAccountId] = useState("");
@@ -35,7 +36,7 @@ const NewScheduleTxn = () => {
 
   return (
     <>
-      <form>
+      <form className="container">
         <div className="mb-3">
           <input
             type="text"
@@ -60,7 +61,7 @@ const NewScheduleTxn = () => {
 
         <div className="mb-3">
           <input
-            type="text"
+            type="date"
             className="form-control"
             name="date"
             placeholder="Date"
