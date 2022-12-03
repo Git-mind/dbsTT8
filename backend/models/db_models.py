@@ -14,14 +14,8 @@ class BankAccount(db.Model):
     AccountType = Column(String(255))
     AccountBalance = Column(Numeric(10, 2))
 
-    def jsonBankAccounts(self):
-        return {
-            "AccountID": self.AccountID,
-            "AccountType": self.AccountType,
-            "AccountBalance": self.AccountBalance
-        }
-
-        
+    def json(self):
+        return {"AccountID": self.AccountID, "UserID": self.UserID, "AccountType": self.AccountType, "AccountBalance": self.AccountBalance}
 
 class ScheduledTransaction(db.Model):
     __tablename__ = 'ScheduledTransactions'
@@ -33,7 +27,8 @@ class ScheduledTransaction(db.Model):
     TransactionAmount = Column(Numeric(10, 2))
     Comment = Column(String(255))
 
-
+    def json(self):
+        return {"TransactionID": self.TransactionID, "AccountID": self.AccountID, "ReceivingAccountID": self.ReceivingAccountID, "Date": self.Date, "TransactionAmount": self.TransactionAmount, "Comment": self.Comment}
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -46,3 +41,6 @@ class User(db.Model):
     Email = Column(String(255))
     Address = Column(String(255))
     OptIntoPhyStatements = Column(BIT(1))
+
+    def json(self):
+        return {"UserID": self.UserID, "Username": self.Username, "Password": self.Password, "Firstname": self.Firstname, "Lastname": self.Lastname, "Email": self.Email, "Address": self.Address, "OptIntoPhyStatements": self.OptIntoPhyStatements, }
