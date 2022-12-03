@@ -26,3 +26,31 @@ def txn_detail():
             "message": "Transaction not found."
         }
     ), 404
+
+def delete_txn():
+    
+    TransactionID = request.json.get("TransactionID", None)
+    AccountID = request.json.get("AccountID", None)
+    txn_detail = ScheduledTransaction.query.filter_by(TransactionID=TransactionID, AccountID=AccountID).first()
+    print(txn_detail)
+    if txn_detail:
+        db.session.delete(txn_detail)
+        db.session.commit()
+        return jsonify(
+            {
+                "code": 200,
+                "data": {   
+                    "transaction": "Transaction deleted"
+                }
+            }
+        )
+
+    return jsonify(
+        {
+            "code": 404,
+            "data": {
+                "transaction": TransactionID
+            },
+            "message": "Transaction ID not found."
+        }
+    ), 404
