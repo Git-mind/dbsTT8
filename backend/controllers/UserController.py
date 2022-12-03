@@ -20,41 +20,41 @@ from utils.dbConfig import db
 
 
 
-def getUserDetails():
-    if request.is_json:
-        data = request.get_json()
-        user_id = data["user_id"]
-        try:
-            userDetails = User.query.filter_by(UserID=user_id).first()
-            if userDetails:
-                return jsonify(
-                    {
-                        "code": 200,
-                        "data": userDetails.jsonWithoutCredentials()
-                    }
-                ), 200
-
+def getUserDetails(user_id):
+    # if request.is_json:
+    # data = request.get_json()
+    # user_id = data["user_id"]
+    try:
+        userDetails = User.query.filter_by(UserID=user_id).first()
+        if userDetails:
             return jsonify(
                 {
-                "code": 404,
-                "data": "User not found."
+                    "code": 200,
+                    "data": userDetails.jsonWithoutCredentials()
                 }
-            ), 404
+            ), 200
 
-        except Exception as e:
-            return jsonify(
-                {
-                    "code": 500,
-                    "data": "Server error"
-                }
-            ), 500
-    
-    return jsonify(
-        {
-            "code": 400,
-            "data": "Invalid input type. Please input in JSON format."
-        }
-    ), 400
+        return jsonify(
+            {
+            "code": 404,
+            "data": "User not found."
+            }
+        ), 404
+
+    except Exception as e:
+        return jsonify(
+            {
+                "code": 500,
+                "data": "Server error"
+            }
+        ), 500
+
+# return jsonify(
+#     {
+#         "code": 400,
+#         "data": "Invalid input type. Please input in JSON format."
+#     }
+# ), 400
 
 
 def updateUserDetails():
