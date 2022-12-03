@@ -53,4 +53,21 @@ def delete_txn():
             },
             "message": "Transaction ID not found."
         }
-    ), 404
+    ), 201
+
+def txn_insert():
+    if request.is_json:
+        data = request.get_json()
+        try:
+            newTransaction = ScheduledTransaction(**data)
+            db.session.add(newTransaction)
+            db.session.commit()
+        except Exception as e:
+            print (e)
+            return jsonify(
+                {
+                    "code": 500,
+                    "data": "server error"
+                }
+            )
+    return "Success"
