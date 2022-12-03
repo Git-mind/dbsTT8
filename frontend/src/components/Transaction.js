@@ -12,4 +12,3 @@ const Transaction = ({ transaction, onDelete, onToggle }) => {
 }
 
 export default Transaction
-
